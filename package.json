@@ -1,0 +1,24 @@
+{
+  "name": "employee-tracker-mysql",
+  "version": "1.0.0",
+  "description": "This project uses nodejs and MySQL to creat an app so that the user can track of his employee.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shakofa/Employee-Tracker-MySQL.git"
+  },
+  "author": "Shakofa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shakofa/Employee-Tracker-MySQL/issues"
+  },
+  "homepage": "https://github.com/shakofa/Employee-Tracker-MySQL#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.0.0",
+    "mysql": "^2.18.1"
+  }
+}
