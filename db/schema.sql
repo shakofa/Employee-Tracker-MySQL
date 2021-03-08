@@ -10,6 +10,7 @@ USE employees;
 CREATE TABLE department (
     id INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) UNIQUE NOT NULL,
+    PRIMARY KEY (id),
 );
 
 
@@ -19,6 +20,7 @@ CREATE TABLE role (
     salary DECIMAL UNSIGNED NOT NULL,
     department_id INTEGER UNSIGNED NOT NULL,
     INDEX fk_department (fk_department) FOREIGN KEY (department_id) REFERENCES department (id) ON DELETE CASCADE
+    PRIMARY KEY (id),
 );
 
 
@@ -32,5 +34,6 @@ CREATE TABLE employee (
     CONSTRAINT fK_role FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE,
     manager_id INTEGER UNSIGNED,
     INDEX manager_id (manager_id),
-    CONSTRAINT fK_manager FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL
+    CONSTRAINT fK_manager FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL,
+    PRIMARY KEY (id),
 );
