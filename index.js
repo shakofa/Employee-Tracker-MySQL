@@ -109,4 +109,16 @@ async function loadingPrompts () {
     }
 };
 
- 
+ //Viewing the employees
+async function viewEmployees() {
+
+  const employees = await db.viewEmployees();
+
+  console.log("\n");
+  console.table(employees);
+
+  //Everytime the employee is called then load the promts
+  loadingPrompts();
+};
+
+
