@@ -183,3 +183,31 @@ async function viewEmployeesByManager() {
   loadingPrompts();
 }
 
+  //bonus part
+  //delete the employee from database
+  async function removeEmployee() {
+    const employees = await db.findAllEmployees();
+  
+    const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
+      name: `${first_name} ${last_name}`,
+      value: id
+    }));
+  
+    const { employeeId } = await prompt([
+      {
+        type: "list",
+        name: "employeeId",
+        message: "Which employee do you want to remove?",
+        choices: employeeChoices
+      }
+    ]);
+  
+    //wait untill the database remove the employee id 
+    await db.removeEmployee(employeeId);
+  
+    console.log("Employee is removed from the database.");
+  
+    loadingPrompts();
+  }
+  
+  
