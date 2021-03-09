@@ -448,3 +448,38 @@ async function addEmployee() {
     message: "What is the employee's role?",
     choices: roleChoices
   });
+
+  
+    //Adding role id
+    employee.role_id = roleId;
+  
+    const managerChoices = employees.map(({ id, first_name, last_name }) => ({
+      name: `${first_name} ${last_name}`,
+      value: id
+    }));
+    managerChoices.unshift({ name: "None", value: null });
+  
+    const { managerId } = await prompt({
+      type: "list",
+      name: "managerId",
+      message: "Who is the employee's manager?",
+      choices: managerChoices
+    });
+    //Adding manager id
+    employee.manager_id = managerId;
+  
+    await db.createEmployee(employee);
+  
+    console.log(
+      `Added ${employee.first_name} ${employee.last_name} to the database`
+    );
+  
+    loadingPrompts();
+  }
+  
+  
+  // Exit the prompt
+  function quit() {
+    console.log("Byebye!");
+    process.exit();
+  }
