@@ -122,3 +122,31 @@ async function viewEmployees() {
 };
 
 
+//Viewing employees by department
+async function viewEmployeesByDepartment() {
+
+  const departments = await db.findAllDepartments();
+   
+  //a construtor function
+  const departmentChoices = departments.map(({ id, name }) => ({
+      name: name,
+      value: id
+    }));
+
+  const{ departmentId} = await prompt([
+      {
+          type: "list",
+          name: "departmentId",
+          message: "What department are you looking for employees?",
+          choices: departmentChoices
+        }
+      ]);
+  //wait for database to find employee byy department
+  const employees = await db.findAllEmployeesByDepartment(departmentId);
+
+  console.log("\n");
+  console.table(employees);
+
+  loadingPrompts();
+};
+
