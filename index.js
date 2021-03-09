@@ -379,3 +379,72 @@ async function viewEmployeesByManager() {
     loadingPrompts();
   }
   
+//Adding new department
+async function addDepartment() {
+  const department = await prompt([
+    {
+      name: "name",
+      message: "What is the name of the department?"
+    }
+  ]);
+
+  await db.createDepartment(department);
+
+  console.log(`Added ${department.name} to the database`);
+
+  loadingPrompts();
+}
+
+
+//Delete the department
+async function removeDepartment() {
+  const departments = await db.findAllDepartments();
+
+  const departmentChoices = departments.map(({ id, name }) => ({
+    name: name,
+    value: id
+  }));
+
+  const { departmentId } = await prompt({
+    type: "list",
+    name: "departmentId",
+    message:
+      "Which department would you like to delete? (Warning: This will also delete associated roles and employees)",
+    choices: departmentChoices
+  });
+
+  await db.removeDepartment(departmentId);
+
+  console.log(`Department is deleted from the database.`);
+
+  loadingPrompts();
+}
+
+
+//Adding new department and employee
+async function addEmployee() {
+  const roles = await db.findAllRoles();
+  const employees = await db.findAllEmployees();
+
+  const employee = await prompt([
+    {
+      name: "first_name",
+      message: "What is the employee's first name?"
+    },
+    {
+      name: "last_name",
+      message: "What is the employee's last name?"
+    }
+  ]);
+
+  const roleChoices = roles.map(({ id, title }) => ({
+    name: title,
+    value: id
+  }));
+
+  const { roleId } = await prompt({
+    type: "list",
+    name: "roleId",
+    message: "What is the employee's role?",
+    choices: roleChoices
+  });
