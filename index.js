@@ -150,3 +150,36 @@ async function viewEmployeesByDepartment() {
   loadingPrompts();
 };
 
+
+//viewing manager employees
+async function viewEmployeesByManager() {
+  const managers = await db.findAllEmployees();
+
+  const managerChoices = managers.map(({ id, first_name, last_name }) => ({
+    name: `${first_name} ${last_name}`,
+    value: id
+  }));
+
+  const { managerId } = await prompt([
+    {
+      type: "list",
+      name: "managerId",
+      message: "Which employee's direct reports do you want to see?",
+      choices: managerChoices
+    }
+  ]);
+
+  const employees = await db.findAllEmployeesByManager(managerId);
+
+  console.log("\n");
+  
+  //check if the employee has anymatch
+  if (employees.length === 0) {
+    console.log("The selected employee has no direct reports");
+  } else {
+    console.table(employees);
+  }
+
+  loadingPrompts();
+}
+
