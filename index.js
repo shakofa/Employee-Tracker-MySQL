@@ -4,7 +4,9 @@ const consoleTable = require ("console.table");
 
 init();
 
-async function loadingPrompt () {
+
+//Loading the prompt
+async function loadingPrompts () {
     const { choice } = await prompt([
 
         {
@@ -13,35 +15,35 @@ async function loadingPrompt () {
            message: "what would you like to do?",
            choices: [
 
-            {
+              {
                 name: "View All Employees",
                 value: "VIEW_EMPLOYEES"
-            },
-            {
+              },
+              {
                 name: "View All Employees By Department",
                 value: "VIEW-EMPLOYEES-BY-DEPARTMENTS"
-            },
-            {
+              },
+              {
                 name: "View All Employees By Manager",
                 value: "VIEW-EMPLOYEES-BY-MANAGER"
-            },
-            {
+              },
+              {
                 name: "Add Employee",
                 type: "ADD-EMPLOYEE"
-            },
-            {
+              },
+              {
                 name: "Remove Employee",
                 type: "REMOVE-EMPLOYEE"
-            },
-            {
+              },
+              {
                 name: "Update Employee Role",
                 type: "UPDATE-EMPLOYEE"
-            },
-            {
+              },
+              {
                 name: "Update Employee Manager",
                 type: "UPDATE-MANAGER"
-            },
-            {
+              },
+              {
                 name: "View All Roles",
                 value: "VIEW_ROLES"
               },
@@ -105,20 +107,6 @@ async function loadingPrompt () {
         default:
             return quit();
     }
-}
+};
 
-     
-async function viewEmployees() {
-
-    const employees = await db.viewEmployees();
-
-    console.log("\n");
-    console.table(employees);
-
-     loadinPrompts();
-}
-
-
-
-}
-
+ 
