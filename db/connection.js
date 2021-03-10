@@ -1,13 +1,13 @@
 const util = require('util');
 const mysql = require ("mysql");
-const pass = require ('./pass.js');
+
 
 const connection = mysql.createConnection({
     host: "localhost",
     // Your username
-    user: "",
+    user: "anahita",
     // Your password
-    password: "",
+    password: "Z3gzagzagzeg",
     database: "employees"
   });
 
