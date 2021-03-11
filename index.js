@@ -88,7 +88,7 @@ async function loadingPrompts() {
       //const { choice } = await prompt();
     switch (choice) {
         case "VIEW_EMPLOYEES":
-            return viewEmployees();
+        return viewEmployees();
         case "VIEW_EMPLOYEES_BY_DEPARTMENT":
             return viewEmployeesByDepartment();
         case "VIEW_EMPLOYEES_BY_MANAGER":
