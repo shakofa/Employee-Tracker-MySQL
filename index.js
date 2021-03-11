@@ -1,82 +1,91 @@
-const {prompt} = requires ("inquire");
+const {prompt} = require ("inquirer");
 const db = require ("./db");
 const consoleTable = require ("console.table");
 
+
 init();
 
+function init() {
+
+  loadingPrompts();
+};
 
 //Loading the prompt
-async function loadingPrompts () {
-    const { choice } = await prompt([
+async function loadingPrompts() {
 
+  const { choice } = await prompt([
+    {
+      type: "list",
+      name: "choice",
+      message: "What would you like to do?",
+      choices: [
         {
-           type: "list",
-           name: "choice",
-           message: "what would you like to do?",
-           choices: [
-
-              {
-                name: "View All Employees",
-                value: "VIEW_EMPLOYEES"
-              },
-              {
-                name: "View All Employees By Department",
-                value: "VIEW-EMPLOYEES-BY-DEPARTMENTS"
-              },
-              {
-                name: "View All Employees By Manager",
-                value: "VIEW-EMPLOYEES-BY-MANAGER"
-              },
-              {
-                name: "Add Employee",
-                type: "ADD-EMPLOYEE"
-              },
-              {
-                name: "Remove Employee",
-                type: "REMOVE-EMPLOYEE"
-              },
-              {
-                name: "Update Employee Role",
-                type: "UPDATE-EMPLOYEE"
-              },
-              {
-                name: "Update Employee Manager",
-                type: "UPDATE-MANAGER"
-              },
-              {
-                name: "View All Roles",
-                value: "VIEW_ROLES"
-              },
-              {
-                name: "Add Role",
-                value: "ADD_ROLE"
-              },
-              {
-                name: "Remove Role",
-                value: "REMOVE_ROLE"
-              },
-              {
-                name: "View All Departments",
-                value: "VIEW_DEPARTMENTS"
-              },
-              {
-                name: "Add Department",
-                value: "ADD_DEPARTMENT"
-              },
-              {
-                name: "Remove Department",
-                value: "REMOVE_DEPARTMENT"
-              },
-              {
-                name: "Quit",
-                value: "QUIT"
-              }
-           ]
+          name: "View All Employees",
+          value: "VIEW_EMPLOYEES"
+        },
+        {
+          name: "View All Employees By Department",
+          value: "VIEW_EMPLOYEES_BY_DEPARTMENT"
+        },
+        {
+          name: "View All Employees By Manager",
+          value: "VIEW_EMPLOYEES_BY_MANAGER"
+        },
+        {
+          name: "Add Employee",
+          value: "ADD_EMPLOYEE"
+        },
+        {
+          name: "Remove Employee",
+          value: "REMOVE_EMPLOYEE"
+        },
+        {
+          name: "Update Employee Role",
+          value: "UPDATE_EMPLOYEE_ROLE"
+        },
+        {
+          name: "Update Employee Manager",
+          value: "UPDATE_EMPLOYEE_MANAGER"
+        },
+        {
+          name: "View All Roles",
+          value: "VIEW_ROLES"
+        },
+        {
+          name: "Add Role",
+          value: "ADD_ROLE"
+        },
+        {
+          name: "Remove Role",
+          value: "REMOVE_ROLE"
+        },
+        {
+          name: "View All Departments",
+          value: "VIEW_DEPARTMENTS"
+        },
+        {
+          name: "Add Department",
+          value: "ADD_DEPARTMENT"
+        },
+        {
+          name: "Remove Department",
+          value: "REMOVE_DEPARTMENT"
+        },
+        {
+          name: "Quit",
+          value: "QUIT"
         }
-    ]);
+      ]
+    }
+
+  ]);
+
+
 
 
     // Call the functions based on what user chose
+    //async function init() {
+      //const { choice } = await prompt();
     switch (choice) {
         case "VIEW_EMPLOYEES":
             return viewEmployees();
@@ -107,7 +116,9 @@ async function loadingPrompts () {
         default:
             return quit();
     }
-};
+}
+
+
 
  //Viewing the employees
 async function viewEmployees() {
@@ -119,6 +130,7 @@ async function viewEmployees() {
 
   //Everytime the employee is called then load the promts
   loadingPrompts();
+ 
 };
 
 
@@ -148,6 +160,7 @@ async function viewEmployeesByDepartment() {
   console.table(employees);
 
   loadingPrompts();
+//init();
 };
 
 
@@ -181,6 +194,7 @@ async function viewEmployeesByManager() {
   }
 
   loadingPrompts();
+  //init();
 }
 
   //bonus part
@@ -208,6 +222,7 @@ async function viewEmployeesByManager() {
     console.log("Employee is removed from the database.");
   
     loadingPrompts();
+    //init();
   }
   
 
@@ -250,6 +265,7 @@ async function viewEmployeesByManager() {
     console.log("Updated employee's role");
   
     loadingPrompts();
+    //init();
   }
   
 
@@ -293,6 +309,7 @@ async function viewEmployeesByManager() {
     console.log("Updated employee's manager");
   
     loadingPrompts();
+   // init();
   }
   
   
@@ -304,6 +321,7 @@ async function viewEmployeesByManager() {
     console.table(roles);
   
     loadingPrompts();
+    //init();
   }
   
   
@@ -338,6 +356,7 @@ async function viewEmployeesByManager() {
     console.log(`Added ${role.title} to the database`);
   
     loadingPrompts();
+    //init();
   }
   
 
@@ -366,6 +385,7 @@ async function viewEmployeesByManager() {
     console.log("Removed role from the database");
   
     loadingPrompts();
+    //init();
   }
   
   
@@ -377,6 +397,7 @@ async function viewEmployeesByManager() {
     console.table(departments);
   
     loadingPrompts();
+    //init();
   }
   
 //Adding new department
@@ -393,6 +414,7 @@ async function addDepartment() {
   console.log(`Added ${department.name} to the database`);
 
   loadingPrompts();
+  //init();
 }
 
 
@@ -417,7 +439,9 @@ async function removeDepartment() {
 
   console.log(`Department is deleted from the database.`);
 
-  loadingPrompts();
+ loadingPrompts();
+
+  //init();
 }
 
 
@@ -449,7 +473,7 @@ async function addEmployee() {
     choices: roleChoices
   });
 
-  
+
     //Adding role id
     employee.role_id = roleId;
   
@@ -475,6 +499,7 @@ async function addEmployee() {
     );
   
     loadingPrompts();
+    //init();
   }
   
   
