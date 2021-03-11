@@ -8,10 +8,10 @@ In order to run this project you need to install inquirer, console.table and mys
 Run the following command to start the prompts: ( node index.js )
 
 ## Check It Out Here!
-Take a look at the functionality of this priject. [Click Here]()
+Take a look at the functionality of this priject. [Click Here](https://drive.google.com/file/d/1RJNAfuYaFznaUv2SxQPgyNr4xcCn3QyC/view)
 
 ## Tools and Technologies:
-* **Languages:**JAVASCRIPT
+* **Languages:** JAVASCRIPT
 * **DataBase System:** MySQL
 * **Server Environment:** NodeJS
 * **Version Control:** Git
